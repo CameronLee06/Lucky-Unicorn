@@ -25,4 +25,3 @@ while show_instructions.lower() != "xxx":
     elif show_instructions == "no":
         print("show instructions \n")
 
-    

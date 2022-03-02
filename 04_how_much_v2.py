@@ -9,7 +9,7 @@ def num_check(question, low, high):
             response = int(input("How much would you like to play with?"))
 
             # if the amount is too low / too high give
-            if 0 < response <= 10:
+            if low < response <= high:
                 return response
 
 
