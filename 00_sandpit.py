@@ -1,9 +1,27 @@
 import random
 
-number = 1
-print ("unicorn")
+# main routine goes here 
 
+STARTING_BALANCE = 100
 
-for item in range(0,20):
-    number = random.randint(1,4)
-    print(number, end="\t")
+balance = STARTING_BALANCE
+# Testing loop to generate 20 tokens
+for item in range(0,100):
+    chosen_num = random.randint(1,100)
+    
+    # adjust balance
+    if 1 <= chosen_num <=5:
+        chosen = "unicorn"
+        balance += 4
+    elif 6 <= chosen_num <=36:
+        balance -=1
+    else:
+        chosen = "horse"
+        balance -=0.5
+        chosen = "zebra"
+        balance -=0.5
+
+# output
+print("Starting Balance: ${:.2f}".format(STARTING_BALANCE))
+print("Final Balance: ${:.2f}".format(balance))
+
