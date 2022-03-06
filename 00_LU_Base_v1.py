@@ -1,4 +1,5 @@
 # Checks for yes/no
+import random
 def yes_no(question):
 
     valid = False
@@ -42,11 +43,58 @@ def num_check(question, low, high):
 show_instructions = yes_no("Have you played this game before?" )
 
 if show_instructions == "yes":
-    print("game continues\n")
+    print("Okay, next part\n")
 elif show_instructions == "no":
     print("show instructions \n")
 
 
-how_much = num_check("How much do you want to play with? ", 1, 10)
-print("you chose to play with ${:.2f}".format(how_much))
+balance = num_check("How much do you want to play with? ", 1, 10)
+
+rounds_played = 0
+
+play_again = input("Press <Enter> to play...").lower()
+while play_again == "":
+
+    # increase # of rounds played
+    rounds_played += 1
+
+    # print round number 
+    print("*** Round #{} ***".format(rounds_played))
+    
+    chosen_num = random.randint(1,100)
+    
+    # adjust balance
+    # if the random #is between 1 and 5,
+    # user gets a unicorn (add $4 to balance)
+    if 1 <= chosen_num <=5:
+        chosen = "unicorn"
+        balance += 4
+
+    # if the random # is between 6 and 36
+    #user gets a donkey (subtract $1 from balance)
+    elif 6 <= chosen_num <=36:
+        balance -=1
+        chosen = "donkey"
+    else:
+        if chosen_num % 2 == 0:
+            chosen = "horse"
+
+        # otherwise set it to a zebra
+        else:
+            chosen = "zebra"
+            balance -= 0.5
+
+    print("You got a {}.  Your balance is $""{:.2f}".format(chosen, balance))
+
+    if balance < 1:
+        break
+        play_again = "xxx"
+        print("Sorry you have run out of money")
+
+    
+
+    play_again = input("Press Enter to play again or 'xxx' to quit")
+
+print()
+print("Final Balance", balance)
 
