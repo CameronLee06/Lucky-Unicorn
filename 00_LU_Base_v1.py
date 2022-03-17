@@ -60,7 +60,7 @@ print()
 statement_generator("Welcome to the Lucky Unicorn Game", "-")
 print()
 
-show_instructions = yes_no("Have you played this game before?" )
+show_instructions = yes_no("Have you played this game before? " )
 
 if show_instructions == "yes":
     print("Okay, next part\n")
@@ -68,7 +68,7 @@ elif show_instructions == "no":
     print("show instructions \n")
 
 
-balance = num_check("How much do you want to play with? ", 1, 10)
+balance = num_check("Choose a starting amount between 1-10 ", 1, 10)
 
 rounds_played = 0
 
@@ -114,9 +114,10 @@ while play_again == "":
     statement_generator(feedback, decoration)
 
     if balance < 1:
-        break
+
         play_again = "xxx"
         print("Sorry you have run out of money")
+        break
 
     
 
