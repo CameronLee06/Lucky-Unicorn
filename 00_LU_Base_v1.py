@@ -37,9 +37,29 @@ def num_check(question, low, high):
         except ValueError:
             print("Error, please try again")
 
+
+def statement_generator(statement, decoration):
+    
+    sides = decoration * 3
+
+    statement = "{} {} {}".format(sides, statement, sides)
+    top_bottom = decoration * len(statement)
+
+    print(top_bottom)
+    print(statement)
+    print(top_bottom)
+
+
+    return ""
+
 # *** Main Routine ***
 
 # Ask the user if they have played before
+
+print()
+statement_generator("Welcome to the Lucky Unicorn Game", "-")
+print()
+
 show_instructions = yes_no("Have you played this game before?" )
 
 if show_instructions == "yes":
@@ -58,8 +78,10 @@ while play_again == "":
     # increase # of rounds played
     rounds_played += 1
 
+    print()
     # print round number 
-    print("*** Round #{} ***".format(rounds_played))
+    rounds_statement = "*** Round #{} ***".format(rounds_played)
+    statement_generator(rounds_statement, "^")
     
     chosen_num = random.randint(1,100)
     
@@ -68,6 +90,7 @@ while play_again == "":
     # user gets a unicorn (add $4 to balance)
     if 1 <= chosen_num <=5:
         chosen = "unicorn"
+        decoration = "*"
         balance += 4
 
     # if the random # is between 6 and 36
@@ -75,16 +98,20 @@ while play_again == "":
     elif 6 <= chosen_num <=36:
         balance -=1
         chosen = "donkey"
+        decoration = "D"
     else:
         if chosen_num % 2 == 0:
             chosen = "horse"
+            decoration = "H"
 
         # otherwise set it to a zebra
         else:
             chosen = "zebra"
             balance -= 0.5
+            decoration = "Z"
 
-    print("You got a {}.  Your balance is $""{:.2f}".format(chosen, balance))
+    feedback = "You got a {}.  Your balance is $""{:.2f}".format(chosen, balance)
+    statement_generator(feedback, decoration)
 
     if balance < 1:
         break

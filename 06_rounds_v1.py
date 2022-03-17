@@ -26,6 +26,7 @@ while play_again == "":
     # if the random # is between 6 and 36
     #user gets a donkey (subtract $1 from balance)
     elif 6 <= chosen_num <=36:
+        chosen = "donkey"
         balance -=1
     else:
         if chosen_num % 2 == 0:
@@ -36,14 +37,15 @@ while play_again == "":
             chosen = "zebra"
             balance -= 0.5
 
-        print("You got a {}.  Your balance is $""{:.2f}".format(chosen, balance))
+    print("You got a {}.  Your balance is $""{:.2f}".format(chosen, balance))
 
     if balance < 1:
         play_again = "xxx"
         print("Sorry you have run out of money")
+        break
 
     play_again = input("Press Enter to play again or 'xxx' to quit")
 
-    print()
-    print("Final Balance", balance)
+print()
+print("Final Balance ${:.2f}".format(balance))
                      
